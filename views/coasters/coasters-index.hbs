@@ -8,7 +8,11 @@
   {{#each coastersList}}
   <a href="#" class="btn btn-sm btn-dark">Ver detalles</a>
   <h4>{{this.name}}</h4>
-  <p>{{trimString this.description 200}}</p>
+  <div class="row">
+    <div class="col-md-9">
+      <p>{{trimString this.description 200}}</p>
+    </div>
+  </div>
   <small><strong>Longitud: </strong> {{this.length}}m | <strong>Inversiones: </strong> {{this.inversions}} |
     <strong>Parque: </strong> {{this.park.name}}</small>
   <hr>

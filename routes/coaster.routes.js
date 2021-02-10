@@ -26,12 +26,22 @@ router.post("/new", (req, res, next) => {
     .catch((err) => next(err))
 })
 
-router.get("/", (req, res, next) => {
+router.get("/", (req, res, next) =>
   Coaster.find()
     .populate("park")
     .then((coastersList) =>
       res.render("coasters/coasters-index", { coastersList })
     )
     .catch((err) => next(err))
-})
+)
+
+router.get("/:id", (req, res, next) =>
+  Coaster.findById(req.params.id)
+    .populate("park")
+    .then((coaster) => {
+      console.log(coaster)
+      res.render("coasters/coaster-details", coaster)
+    })
+    .catch((err) => next(err))
+)
 module.exports = router
