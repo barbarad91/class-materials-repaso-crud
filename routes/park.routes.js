@@ -7,7 +7,6 @@ router.post("/new", (req, res, next) => {
   const { name, description, active } = req.body
   const activeValue = active === "on"
 
-  res.send(req.body)
   Park.create({ name, description, active: activeValue })
     .then(res.redirect("/"))
     .catch((err) => next(err))
