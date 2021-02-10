@@ -32,7 +32,7 @@
         <div class="form-group">
           <label for="park-list">Parque en el que se encuentra:</label>
           <select name="park" class="form-control" id="park-list">
-            <option>Seleccionar</option>
+            <option disabled selected>Seleccionar</option>
             {{#each parksList}}
             <option value="{{this.id}}">{{this.name}}</option>
             {{/each}}

@@ -18,6 +18,30 @@ router.post("/new", (req, res, next) => {
     .catch((err) => next(err))
 })
 
+router.get("/delete", (req, res, next) =>
+  Park.findByIdAndRemove(req.query.id)
+    .then(res.redirect("/parks"))
+    .catch((err) => next(err))
+)
+
+router.get("/edit", (req, res, next) => {
+  Park.findById(req.query.id)
+    .then((park) => res.render("parks/park-edit", park))
+    .catch((err) => next(err))
+})
+
+router.post("/edit", (req, res, next) => {
+  const { name, description, active } = req.body
+  const activeValue = active === "on"
+  Park.findByIdAndUpdate(
+    req.query.id,
+    { name, description, active: activeValue },
+    { omitUndefined: true }
+  )
+    .then(res.redirect(`/parks/${req.query.id}`))
+    .catch((err) => next(err))
+})
+
 router.get("/:id", (req, res, next) =>
   Park.findById(req.params.id)
     .then((park) => {
