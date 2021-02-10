@@ -22,7 +22,7 @@ router.post("/new", (req, res, next) => {
     active: activeValue,
     park,
   })
-    .then(res.redirect("/"))
+    .then(res.redirect("/coasters"))
     .catch((err) => next(err))
 })
 
@@ -35,6 +35,12 @@ router.get("/", (req, res, next) =>
     .catch((err) => next(err))
 )
 
+router.get("/delete", (req, res, next) => {
+  Coaster.findByIdAndRemove(req.query.id)
+    .then(res.redirect("/coasters"))
+    .catch((err) => next(err))
+})
+
 router.get("/:id", (req, res, next) =>
   Coaster.findById(req.params.id)
     .populate("park")
@@ -44,4 +50,5 @@ router.get("/:id", (req, res, next) =>
     })
     .catch((err) => next(err))
 )
+
 module.exports = router
