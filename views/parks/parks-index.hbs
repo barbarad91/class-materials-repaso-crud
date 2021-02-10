@@ -1,0 +1,24 @@
+<div class="container coasters-index">
+
+    <a href="/coasters/new" class="btn btn-dark">Añadir parque</a>
+
+    <h1 style="font-weight: 100">Índice de parques</h1>
+
+    <hr>
+    {{#each parksList}}
+    <div class="row">
+        <div class="col-md-8">
+            <h4>{{this.name}}</h4>
+            <p>{{trimString this.description 200}}</p>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col"><a href="/coasters/{{id}}" class="btn btn-sm btn-dark">Ver detalles</a></div>
+                <div class="col"><a href="/coasters/edit?id={{id}}" class="btn btn-sm btn-dark">Editar</a></div>
+                <div class="col"><a href="/coasters/delete?id={{id}}" class="btn btn-sm btn-dark">Eliminar</a></div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    {{/each}}
+</div>
