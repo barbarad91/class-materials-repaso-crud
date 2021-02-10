@@ -18,4 +18,12 @@ router.post("/new", (req, res, next) => {
     .catch((err) => next(err))
 })
 
+router.get("/:id", (req, res, next) =>
+  Park.findById(req.params.id)
+    .then((park) => {
+      console.log(park)
+      res.render("parks/park-details", park)
+    })
+    .catch((err) => next(err))
+)
 module.exports = router
