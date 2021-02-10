@@ -25,4 +25,6 @@ router.post("/new", (req, res, next) => {
     .then(res.redirect("/"))
     .catch((err) => next(err))
 })
+
+router.get("/", (req, res) => res.render("coasters/coasters-index"))
 module.exports = router
