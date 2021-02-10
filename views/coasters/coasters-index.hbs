@@ -6,17 +6,27 @@
 
   <hr>
   {{#each coastersList}}
-  <a href="/coasters/{{id}}" class="btn btn-sm btn-dark">Ver detalles</a>
-  <a href="/coasters/delete?id={{id}}" class="btn btn-sm btn-dark">Eliminar</a>
-
-  <h4>{{this.name}}</h4>
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-8">
+      <h4>{{this.name}}</h4>
       <p>{{trimString this.description 200}}</p>
+      <small><strong>Longitud: </strong> {{this.length}}m | <strong>Inversiones: </strong> {{this.inversions}} |
+        <strong>Parque: </strong> {{this.park.name}}</small>
+    </div>
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col"><a href="/coasters/{{id}}" class="btn btn-sm btn-dark">Ver detalles</a></div>
+        <div class="col"><a href="/coasters/edit?id={{id}}" class="btn btn-sm btn-dark">Editar</a></div>
+        <div class="col"><a href="/coasters/delete?id={{id}}" class="btn btn-sm btn-dark">Eliminar</a></div>
+      </div>
+
+
+
     </div>
   </div>
-  <small><strong>Longitud: </strong> {{this.length}}m | <strong>Inversiones: </strong> {{this.inversions}} |
-    <strong>Parque: </strong> {{this.park.name}}</small>
+
+
+
   <hr>
   {{/each}}
 
