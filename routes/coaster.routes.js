@@ -41,16 +41,15 @@ router.get("/delete", (req, res, next) =>
     .catch((err) => next(err))
 )
 
-router.get("/edit", (req, res, next) => {
-  Park.find()
-    .select("name")
-    .then((parksList) => {
-      // res.render("coasters/new-coaster", { parksList })})
-      Coaster.findById(req.query.id).then((coaster) =>
-        res.render("coasters/coaster-edit", { coaster, parksList })
-      )
-    })
-    .catch((err) => next(err))
+router.get("/edit", async (req, res, next) => {
+  try {
+    const parksList = await Park.find().select("name")
+    const coaster = await Coaster.findById(req.query.id)
+
+    res.render("coasters/coaster-edit", { coaster, parksList })
+  } catch (err) {
+    next(err)
+  }
 })
 
 router.post("/edit", (req, res, next) => {
