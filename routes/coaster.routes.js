@@ -42,21 +42,31 @@ router.get("/delete", (req, res, next) =>
 )
 
 router.get("/edit", (req, res, next) => {
-  Coaster.findById(req.query.id)
-    .then((coaster) => {
-      console.log(coaster)
-      res.render("coasters/coaster-edit", coaster)
+  Park.find()
+    .select("name")
+    .then((parksList) => {
+      // res.render("coasters/new-coaster", { parksList })})
+      Coaster.findById(req.query.id).then((coaster) =>
+        res.render("coasters/coaster-edit", { coaster, parksList })
+      )
     })
     .catch((err) => next(err))
 })
 
 router.post("/edit", (req, res, next) => {
   const { name, description, inversions, length, active, park } = req.body
-  const updatedPark =
-    req.body.park && req.body.park != "Seleccionar" ? req.body.park : undefined
+  const activeValue = active === "on"
+  const updatedPark = park && park != "Seleccionar" ? park : undefined
   Coaster.findByIdAndUpdate(
     req.query.id,
-    { name, description, inversions, length, active, park: updatedPark },
+    {
+      name,
+      description,
+      inversions,
+      length,
+      active: activeValue,
+      park: updatedPark,
+    },
     { omitUndefined: true }
   )
     .then(res.redirect(`/coasters/${req.query.id}`))
