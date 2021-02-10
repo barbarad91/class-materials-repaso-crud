@@ -23,4 +23,5 @@ const coasterSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = mongoose.model("Coaster", coasterSchema)
+const Coaster = mongoose.model("Coaster", coasterSchema)
+module.exports = Coaster
