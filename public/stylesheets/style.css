@@ -1,18 +1,25 @@
 body {
-  font: 14px sans-serif; }
+  font: 14px;
+}
 
 a {
-  color: #00B7FF; }
+  color: #00b7ff;
+}
 
 .container {
   padding-top: 95px;
-  padding-bottom: 95px; }
+  padding-bottom: 95px;
+}
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   margin-bottom: 40px;
-  font-weight: 100; }
+  font-weight: 100;
+}
 
 .coasters-index .btn {
-  float: right; }
+  float: right;
+}
 
 /*# sourceMappingURL=style.css.map */
